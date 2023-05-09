@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Witcher Paper RPG</title>
+	<meta charset="UTF-8">
+</head>
+<body style="background-image: url(982990.jpg);">
+<body>
+	<h1 style="color: crimson;">Obliczanie PZ-Punkty Zdrowia (PW=PZ)</h1>
+	<form>
+		<label for="Ciało">Ciało:</label>
+		<style>
+  label[for="Ciało"] {
+    color: crimson;
+  }
+</style>
+		<input type="number" id="liczba1" name="Ciało" required><br><br>
+		<label for="Wola">Wola:</label>
+<style>
+  label[for="Wola"] {
+    color: crimson;
+  }
+</style>
+		<input type="number" id="liczba2" name="Wola" required><br><br>
+		<button type="button" onclick="oblicz()">Oblicz</button><br><br>
+		<label for="wynik">Wynik:</label>
+		<input type="number" id="wynik" name="wynik" readonly>
+		<style>
+  label[for="wynik"] {
+    color: crimson;
+  }
+</style>
+	</form>
+
+	<h1 style="color: yellow;">Rzut kością</h1>
+	<p style="color: yellow;">Podaj poziom cechy:</p>
+	<input type="number" id="liczba3">
+	<button onclick="losuj()">Losuj</button>
+	<p style="color: yellow;" id="wynikLosowania"></p>
+	<p style="color: yellow;" id="lokalizacja"></p>
+
+
+
+	<h1 style="color: darkgreen;">Zadawanie obrażeń</h1>
+	<p style="color: darkgreen;">Obrażenia Broni (?k6):</p>
+	<input type="number" id="n">
+	<button onclick="zadajObrazenia()">Zadaj obrażenia</button>
+	<p id="suma"></p>
+
+	<script>
+		function oblicz() {
+			var liczba1 = parseInt(document.getElementById("liczba1").value);
+			var liczba2 = parseInt(document.getElementById("liczba2").value);
+			var wynik = ((liczba1 + liczba2) * 5) / 2;
+			var zaokraglonyWynik = Math.floor(wynik/5) * 5;
+			document.getElementById("wynik").value = zaokraglonyWynik;
+		}
+
+		function losuj() {
+			var liczba3 = parseInt(document.getElementById("liczba3").value);
+			var liczba4 = Math.floor(Math.random() * 10) + 1;
+			var suma = liczba3 + liczba4;
+			var lokalizacja = "";
+			switch (liczba4) {
+				case 1:
+					lokalizacja = "Głowa";
+					break;
+				case 2:
+				case 3:
+				case 4:
+					lokalizacja = "Korpus";
+					break;
+				case 5:
+					lokalizacja = "P ręka";
+					break;
+				case 6:
+					lokalizacja = "L ręka";
+					break;
+				case 7:
+				case 8:
+					lokalizacja = "P noga";
+					break;
+				case 9:
+				case 10:
+					lokalizacja = "L noga";
+					break;
+			}
+			document.getElementById("wynikLosowania").innerHTML = "Cecha + Rzut Kością " + liczba3 + " i " + liczba4 + " to: " + suma;
+			document.getElementById("lokalizacja").innerHTML = "Lokalizacja Trafienia: " + lokalizacja;
+		}
+
+		function
+zadajObrazenia() {
+var n = parseInt(document.getElementById("n").value);
+var wynik = 0;
+for (var i = 0; i < n; i++) {
+var losowaLiczba = Math.floor(Math.random() * 6) + 1;
+wynik += losowaLiczba;
+}
+document.getElementById("suma").innerHTML = "Zadane obrażenia: " + wynik;
+}
+</script>
+
+</body>
+</html> 
